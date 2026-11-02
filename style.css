@@ -1,0 +1,101 @@
+/* VARIABEL WARNA GLOW DINAMIS */
+:root {
+    --glow-color: #00f0ff;
+    --glow-color-secondary: #7000ff;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 60% 40%, #2a2d32 0%, #111215 70%, #08080a 100%);
+    color: #e2e8f0;
+    overflow-x: hidden;
+}
+.font-heading {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* CARD BORDER MENYALA (NEON GLOW) */
+.glowing-card {
+    position: relative;
+    z-index: 1;
+    border-radius: 24px;
+    background: rgba(26, 29, 36, 0.95);
+}
+
+.glowing-card::before,
+.glowing-card::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, var(--glow-color), var(--glow-color-secondary), var(--glow-color));
+    border-radius: 27px;
+    z-index: -1;
+    background-size: 300% 300%;
+    animation: glowing-animation 6s ease infinite;
+}
+
+.glowing-card::after {
+    filter: blur(20px);
+    opacity: 0.8;
+}
+
+@keyframes glowing-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Custom Input Color Picker */
+input[type="color"] {
+    appearance: none;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+input[type="color"]::-webkit-color-swatch { border: 2px solid #ffffff; border-radius: 50%; }
+
+/* Custom Glow & Shadow Effects */
+.glow-effect {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
+}
+.pill-btn {
+    border: 2px solid rgba(255, 255, 255, 0.951);
+    transition: all 0.3s ease;
+}
+.pill-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+/* Floating Avatar Card Animation */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+.animate-float {
+    animation: float 5s ease-in-out infinite;
+}
+/* Tab Transitions */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+/* Glassmorphism Drawer */
+.glass-panel {
+    background: rgba(18, 20, 26, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
